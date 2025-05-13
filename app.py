@@ -9,7 +9,7 @@ import google.generativeai as genai
 from PIL import Image
 
 #genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-genai.configure(api_key="your_actual_api_key_here")
+genai.configure(api_key="AIzaSyAuWjWVjVM-jGsoFy-hp8xr2JL97-_aekc")
 
 ## Function to load Google Gemini Pro Vision API And get response
 
