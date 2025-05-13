@@ -47,7 +47,6 @@ def input_image_setup(uploaded_file, img_file_buffer):
         raise FileNotFoundError("No file uploaded")
 ##initialize our streamlit app
 
-st.set_page_config(page_title="NutriFit App",page_icon=":apple:",initial_sidebar_state="collapsed")
 
 st.header("NutriFitBot")
 # input=st.text_input("Input Prompt: ",key="input")
