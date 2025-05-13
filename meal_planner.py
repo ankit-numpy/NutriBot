@@ -6,7 +6,7 @@ import os
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Configure page
-st.set_page_config(page_title="NutriFit App", page_icon=":apple:", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="AI Meal Planner", page_icon="🥗")
 
 # Page header
 st.title("🍎 AI-Powered Meal Plan Generator")
@@ -98,40 +98,50 @@ def generate_meal_plan(inputs):
         return None
 
 # Display results
-def run():
-    st.set_page_config(page_title="AI Meal Planner", page_icon="🥗")
-    st.title("🍎 AI-Powered Meal Plan Generator")
-    st.markdown("### Get customized nutrition plans powered by Gemini AI")
-
-    with st.form("user_inputs"):
-        # All input UI components...
-        # ...
-        submitted = st.form_submit_button("Generate Meal Plan")
-
-    if submitted:
-        user_inputs = {
-            "age": age, "gender": gender, "weight": weight, "height": height,
-            "health_goal": health_goal, "medical_conditions": medical_conditions,
-            "workout_frequency": workout_frequency, "workout_intensity": workout_intensity,
-            "diet_type": diet_type, "disliked_foods": disliked_foods, "preferred_cuisines": preferred_cuisines
-        }
-
-        with st.spinner("🧠 Analyzing your profile with Gemini AI..."):
-            meal_plan = generate_meal_plan(user_inputs)
-
-        if meal_plan:
-            st.success("🎉 Your AI-Generated Meal Plan")
-            st.markdown("---")
-            st.markdown(meal_plan)
-            st.download_button("Download Meal Plan", data=meal_plan, file_name="personalized_meal_plan.md", mime="text/markdown")
-        else:
-            st.error("Failed to generate meal plan. Please try again.")
-
-    with st.sidebar:
-        st.markdown("## 🚀 How It Works")
-        st.markdown("1. Enter your health profile\n2. Specify preferences\n3. Get AI-generated plan\n4. Download & implement!")
+if submitted:
+    user_inputs = {
+        "age": age,
+        "gender": gender,
+        "weight": weight,
+        "height": height,
+        "health_goal": health_goal,
+        "medical_conditions": medical_conditions,
+        "workout_frequency": workout_frequency,
+        "workout_intensity": workout_intensity,
+        "diet_type": diet_type,
+        "disliked_foods": disliked_foods,
+        "preferred_cuisines": preferred_cuisines
+    }
+    
+    with st.spinner("🧠 Analyzing your profile with Gemini AI..."):
+        meal_plan = generate_meal_plan(user_inputs)
+    
+    if meal_plan:
+        st.success("🎉 Your AI-Generated Meal Plan")
         st.markdown("---")
-        st.markdown("**Key Features:**")
-        st.markdown("- 🧬 DNA-inspired nutrition\n- 🏥 Medical condition support\n- 🛒 Shopping list\n- 📱 Mobile-friendly")
-        st.markdown("---")
-        st.warning("Disclaimer: Consult a healthcare professional before making dietary changes.")
+        st.markdown(meal_plan)
+        
+        # Add download button
+        st.download_button(
+            label="Download Meal Plan",
+            data=meal_plan,
+            file_name="personalized_meal_plan.md",
+            mime="text/markdown"
+        )
+    else:
+        st.error("Failed to generate meal plan. Please try again.")
+
+# Sidebar
+with st.sidebar:
+    st.markdown("## 🚀 How It Works")
+    st.markdown("1. Enter your health profile\n2. Specify preferences\n3. Get AI-generated plan\n4. Download & implement!")
+    
+    st.markdown("---")
+    st.markdown("**Key Features:**")
+    st.markdown("- 🧬 DNA-inspired nutrition (metaphorical)")
+    st.markdown("- 🏥 Medical condition support")
+    st.markdown("- 🛒 Auto-generated shopping list")
+    st.markdown("- 📱 Mobile-friendly format")
+    
+    st.markdown("---")
+    st.warning("Disclaimer: Consult a healthcare professional before making dietary changes.")
