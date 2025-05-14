@@ -8,8 +8,8 @@ import os
 import google.generativeai as genai
 from PIL import Image
 
-#genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-genai.configure(api_key="AIzaSyAuWjWVjVM-jGsoFy-hp8xr2JL97-_aekc")
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
 
 ## Function to load Google Gemini Pro Vision API And get response
 
@@ -47,7 +47,6 @@ def input_image_setup(uploaded_file, img_file_buffer):
         raise FileNotFoundError("No file uploaded")
 ##initialize our streamlit app
 
-st.set_page_config(page_title="NutriFit App",page_icon=":apple:",initial_sidebar_state="collapsed")
 
 st.header("NutriFitBot")
 # input=st.text_input("Input Prompt: ",key="input")
